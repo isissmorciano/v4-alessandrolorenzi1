@@ -196,7 +196,50 @@ def calcola_media_anno(libri: list[dict]) -> float:
 
 
 def trova_libro_piu_recente(libri: list[dict]) -> dict | None:
+    massimo = 0
+    for libro in libri:
+        if libro["anno"] > massimo:
+            massimo = libro["anno"]
+            libro_recente = libro
+    return libro_recente
+        
+
+# 1. Definisci `conta_per_genere(libri: list[dict]) -> dict[str, int]`:
+#    Restituisce un dizionario dove le chiavi sono i generi e i valori sono il numero di libri per genere.
+
+# Nel `main()`:
+# - Chiama la funzione sui libri caricati.
+# - Stampa il risultato ordinato per genere (alfabetico).
+
+def conta_per_genere(libri: list[dict]) -> dict[str, int]:
+    rom = 0
+    fantascienza = 0
+    fantasy = 0
+    for libro in libri:
+        genere = libro["genere"]
+        if genere == "Romanzo":
+            rom = rom + 1
+        elif genere == "Fantascienza":
+            fantascienza = fantascienza + 1
+        elif genere == "Fantasy":
+            fantasy == fantasy + 1
+    contatore_generi={"Romanzo" : rom,
+                      "Fantascienza" : fantascienza,
+                      "Fantasy" : fantasy}
+    return contatore_generi
     
+### Punto E – Bonus: Modifica anno di un libro 
+
+# Definisci `modifica_anno_libro(libri: list[dict], titolo: str, nuovo_anno: int) -> tuple[bool, str, list[dict]]`:
+# - Trova il libro con quel titolo (ricerca esatta) e aggiorna l'anno.
+# - Restituisce una tupla `(success, messaggio, libri_modificati)` dove `success` è `True` se il libro è stato trovato e modificato, altrimenti `False`. La lista modificata è sempre restituita.
+
+def modifica_anno_libro(libri: list[dict], titolo: str, nuovo_anno: int) -> None:
+    for libro in libri:
+        if libro["titolo"] == titolo:
+            libro["anno"] == nuovo_anno
+    print("Anno cambiato con successo!")
+    print(libri)
 
 
 
@@ -215,6 +258,11 @@ def main():
     # genere = input("Inserisci un genere tra Fantascienza,Fantasy o Romanzo: ")
     # print(f"I film filtrati sono:{filtra_per_genere(libri,genere)} ")
     # print(f"La media degli anni è {calcola_media_anno(libri)}")
+    # print(f"Il libro più recente è {trova_libro_piu_recente(libri)}")
+    # print(f"Contatore per generi: {conta_per_genere(libri)}")
+    titolo = input("Inserisci il titolo del libro a cui vuoi modificare l'anno: ")
+    nuovo_anno = input("Inserisci il nuovo anno da cambiare: ")
+    modifica_anno_libro (libri,titolo,nuovo_anno)
 if __name__ == "__main__":
     main()    
 
