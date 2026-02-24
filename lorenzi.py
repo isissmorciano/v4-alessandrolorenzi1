@@ -127,12 +127,7 @@
 # ```
 
 
-libri = [
-     {"titolo": "Il piccolo principe", "genere": "Romanzo", "anno": 1943},
-     {"titolo": "1984", "genere": "Fantascienza", "anno": 1949},
-     {"titolo": "Dune", "genere": "Fantascienza", "anno": 1965},
-     {"titolo": "Harry Potter", "genere": "Fantasy", "anno": 1997}
-]
+
 
 
 #  1. Definisci `salva_biblioteca(libri: list[dict], nome_file: str) -> None`:
@@ -153,7 +148,7 @@ def salva_biblioteca(libri:list[dict], nome_file: str) -> None:
         print(f"Errore durante il salvataggio del file: {e}")
 
 
- def carica_biblioteca(nome_file: str) -> list[dict]:
+def  carica_biblioteca(nome_file: str) -> list[dict]:
     try:
         with open(nome_file,"r",encoding="utf-8") as file:
             libri = json.load(file)
@@ -162,7 +157,68 @@ def salva_biblioteca(libri:list[dict], nome_file: str) -> None:
         print(f"Errore! Il file {nome_file} non è stato trovato. ")
         return[]
     except IOError as e:
-        print(f"Errore")
+        print(f"Errore nella caricatura del file: {e}")
+        return []
+    
+# . Definisci `filtra_per_genere(libri: list[dict], genere: str) -> list[dict]`:
+# #    Restituisce una nuova lista con solo i libri il cui campo `"genere"` corrisponde a quello passato.
+
+# # Nel `main()`:
+# # - Usa i libri caricati nel Punto A.
+# # - Filtra per `"Fantascienza"` e stampa quanti ne hai trovati e i loro titoli.
+
+def filtra_per_genere(libri: list[dict], genere: str) -> list[dict]:
+    filtrati = []
+    for libro in libri:
+        if libro["genere"] == genere:
+            filtrati.append(libro["titolo"])
+    return filtrati
+
+# 1. Definisci `calcola_media_anno(libri: list[dict]) -> float`:
+# #    Restituisce la media degli anni di pubblicazione come `float`.
+#    Se la lista è vuota, restituisce `0.0`.
+
+# 2. Definisci `trova_libro_piu_recente(libri: list[dict]) -> dict | None`:
+#    Restituisce il dizionario del libro con l'anno più alto.
+#    Se la lista è vuota, restituisce `None`.
+
+# Nel `main()`:
+# - Chiama entrambe le funzioni sui libri caricati e stampa i risultati.
+
+
+def calcola_media_anno(libri: list[dict]) -> float:
+    somma = 0
+    for libro in libri:
+        somma = somma + libro["anno"]   
+    media = somma / len(libri)
+    return media        
+
+
+
+def trova_libro_piu_recente(libri: list[dict]) -> dict | None:
+    
+
+
+
+
+
+
+def main():
+    libri = [
+     {"titolo": "Il piccolo principe", "genere": "Romanzo", "anno": 1943},
+     {"titolo": "1984", "genere": "Fantascienza", "anno": 1949},
+     {"titolo": "Dune", "genere": "Fantascienza", "anno": 1965},
+     {"titolo": "Harry Potter", "genere": "Fantasy", "anno": 1997}
+]
+    # salva_biblioteca(libri,"libri.json")
+    # carica_biblioteca("libri.json")
+    # genere = input("Inserisci un genere tra Fantascienza,Fantasy o Romanzo: ")
+    # print(f"I film filtrati sono:{filtra_per_genere(libri,genere)} ")
+    # print(f"La media degli anni è {calcola_media_anno(libri)}")
+if __name__ == "__main__":
+    main()    
+
+
         
 
 

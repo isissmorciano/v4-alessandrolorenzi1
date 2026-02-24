@@ -1,0 +1,22 @@
+[
+    {
+        "titolo": "Il piccolo principe",
+        "genere": "Romanzo",
+        "anno": 1943
+    },
+    {
+        "titolo": "1984",
+        "genere": "Fantascienza",
+        "anno": 1949
+    },
+    {
+        "titolo": "Dune",
+        "genere": "Fantascienza",
+        "anno": 1965
+    },
+    {
+        "titolo": "Harry Potter",
+        "genere": "Fantasy",
+        "anno": 1997
+    }
+]
